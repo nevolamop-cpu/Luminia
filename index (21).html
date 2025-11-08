@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luminia | Discord Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-glow: conic-gradient(from 180deg at 50% 50%, #16abff33 0deg, #0885ff33 55deg, #54d6ff33 120deg, #0071ff33 160deg, transparent 360deg);
+            --secondary-glow: radial-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #030014;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: #4f46e5 #030014;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030014;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #4f46e5;
+            border-radius: 20px;
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-text-gradient {
+            background: linear-gradient(to right, #fff, #818cf8, #c4b5fd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: textShine 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes textShine {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .glass {
+            background: rgba(17, 25, 40, 0.75);
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="fixed w-full z-50 top-0 start-0 border-b border-white/10 glass">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="https://discord.gg/4AyQp3Sy6d" class="flex items-center space-x-3 rtl:space-x-reverse group">
+                <div class="relative flex h-10 w-10 items-center justify-center rounded-full bg-indigo-500/20 group-hover:bg-indigo-500/40 transition-all duration-300">
+                    <i class="fa-solid fa-moon text-indigo-300 text-xl group-hover:rotate-12 transition-transform duration-500"></i>
+                    <div class="absolute -inset-1 rounded-full bg-indigo-500/30 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                <span class="self-center text-2xl font-semibold whitespace-nowrap tracking-widest hero-text-gradient">LUMINIA</span>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <a href="https://discord.gg/4AyQp3Sy6d" target="_blank" rel="noopener noreferrer" class="text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-800 font-medium rounded-lg text-sm px-6 py-3 text-center transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(99,102,241,0.5)]">
+                    Join Server
+                </a>
+                </div>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex items-center justify-center relative px-6 pt-20 overflow-hidden">
+        <div class="absolute top-1/4 -left-64 w-96 h-96 bg-indigo-600/30 rounded-full blur-[128px] animate-pulse-slow"></div>
+        <div class="absolute bottom-1/4 -right-64 w-96 h-96 bg-violet-600/20 rounded-full blur-[128px] animate-pulse-slow" style="animation-delay: 2s;"></div>
+
+        <div class="text-center max-w-4xl mx-auto z-10 relative">
+            <span class="inline-block py-1 px-3 rounded-full bg-indigo-900/30 text-indigo-300 text-sm font-medium mb-6 border border-indigo-500/30 reveal">
+                ✧ FEB.2025 ✧
+            </span>
+            <h1 class="mb-8 text-5xl md:text-7xl font-extrabold tracking-tight leading-none reveal" style="transition-delay: 100ms;">
+                Welcome to <br/>
+                <span class="hero-text-gradient text-6xl md:text-9xl">LUMINIA</span>
+            </h1>
+            <p class="mb-12 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 xl:px-48 reveal" style="transition-delay: 200ms;">
+                Ascend to a higher standard of community. Where refined conversations, exclusive events, and a premium atmosphere await you.
+            </p>
+            <div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-6 reveal" style="transition-delay: 300ms;">
+                <a href="#join" class="inline-flex justify-center items-center py-4 px-8 text-base font-medium text-center text-white rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 focus:ring-4 focus:ring-indigo-800 transition-all duration-300 hover:shadow-[0_0_30px_rgba(99,102,241,0.6)] hover:-translate-y-1">
+                    Enter Luminia
+                    <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+                <a href="#features" class="inline-flex justify-center items-center py-4 px-8 text-base font-medium text-center text-gray-300 rounded-xl border border-white/20 hover:bg-white/10 focus:ring-4 focus:ring-gray-800 transition-all duration-300 backdrop-blur-sm">
+                    Explore Features
+                </a>
+            </div>
+            
+             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl mx-auto mt-16 reveal" style="transition-delay: 400ms;">
+                <div class="glass p-4 rounded-2xl text-center floating" style="animation-delay: 0s;">
+                    <dt class="mb-2 text-3xl md:text-4xl font-extrabold text-indigo-300">500+</dt>
+                    <dd class="font-light text-gray-400">Members</dd>
+                </div>
+                <div class="glass p-4 rounded-2xl text-center floating" style="animation-delay: -2s;">
+                    <dt class="mb-2 text-3xl md:text-4xl font-extrabold text-violet-300">24/7</dt>
+                    <dd class="font-light text-gray-400">Active Chat</dd>
+                </div>
+                <div class="glass p-4 rounded-2xl text-center floating col-span-2 md:col-span-1" style="animation-delay: -4s;">
+                    <dt class="mb-2 text-3xl md:text-4xl font-extrabold text-fuchsia-300">Weekly</dt>
+                    <dd class="font-light text-gray-400">Events</dd>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 md:py-32 relative">
+        <div class="max-w-screen-xl px-6 mx-auto lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+                    Not just another server. <br>
+                    <span class="text-indigo-400">A destination.</span>
+                </h2>
+                <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                    Luminia was forged from the desire for something better. We grew tired of chaotic, unmoderated spaces. We built a sanctuary focused on quality interaction, genuine connections, and a mature atmosphere.
+                </p>
+                <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                    Whether you're here for gaming, late-night deep talks, or creative collaboration, you'll find your place among the stars.
+                </p>
+                <div class="flex items-center gap-4 text-indigo-300">
+                    <i class="fa-solid fa-crown text-2xl"></i>
+                    <span class="text-lg font-medium">Curated Community Experience</span>
+                </div>
+            </div>
+            <div class="relative reveal h-96 glass rounded-3xl overflow-hidden border-0 group">
+                 <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-fuchsia-500/20 group-hover:scale-120 transition-transform duration-1000"></div>
+                 <img src="https://file.garden/aBBwEdnZIwek38CJ/Screenshot%202025-11-09%20004427.png" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay hover:opacity-60 transition-opacity duration-700">
+                 <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-[#030014] to-transparent">
+                     <p class="text-indigo-200">Voice channels always active.</p>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-24 relative">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Premium Features</h2>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">Crafted for members who demand excellence.</p>
+        </div>
+
+        <div class="max-w-screen-xl px-6 mx-auto grid gap-8 md:grid-cols-3">
+            <div class="glass p-8 rounded-3xl border border-white/5 hover:border-indigo-500/50 transition-all duration-500 hover:-translate-y-2 group reveal">
+                <div class="w-16 h-16 bg-indigo-900/50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-600/20 transition-colors duration-500">
+                    <i class="fa-solid fa-shield-halved text-3xl text-indigo-400"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Ironclad Security</h3>
+                <p class="text-gray-400 leading-relaxed">
+                    Advanced moderation bots and a dedicated staff team ensure zero toxicity. Your peace of mind is our priority.
+                </p>
+            </div>
+
+             <div class="glass p-8 rounded-3xl border border-white/5 hover:border-violet-500/50 transition-all duration-500 hover:-translate-y-2 group reveal" style="transition-delay: 150ms;">
+                <div class="w-16 h-16 bg-violet-900/50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-violet-600/20 transition-colors duration-500">
+                    <i class="fa-solid fa-gem text-3xl text-violet-400"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Level 2 Boosted</h3>
+                <p class="text-gray-400 leading-relaxed">
+                    Enjoy crystal clear 256kbps audio, 50MB uploads, and the high quality streaming for all members. (htting lv3 soon)
+                </p>
+            </div>
+
+             <div class="glass p-8 rounded-3xl border border-white/5 hover:border-fuchsia-500/50 transition-all duration-500 hover:-translate-y-2 group reveal" style="transition-delay: 300ms;">
+                <div class="w-16 h-16 bg-fuchsia-900/50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-fuchsia-600/20 transition-colors duration-500">
+                    <i class="fa-solid fa-dice-d20 text-3xl text-fuchsia-400"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Custom Bots</h3>
+                <p class="text-gray-400 leading-relaxed">
+                    Play custom made bots and have fun with friends.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="join" class="py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/20 to-transparent pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal">
+            <div class="glass p-12 md:p-20 rounded-[3rem] border border-indigo-500/30 relative overflow-hidden">
+                <div class="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/5 to-transparent animate-[shimmer_3s_infinite]" style="animation: shimmer 6s infinite;"></div>
+
+                <h2 class="text-4xl md:text-6xl font-extrabold mb-8">Ready to Ascend?</h2>
+                <p class="text-xl text-gray-300 mb-12 max-w-xl mx-auto">
+                    The gates to Luminia are open. Your new home community is just one click away.
+                </p>
+                
+                <a href="https://discord.gg/4AyQp3Sy6d" target="_blank" rel="noopener noreferrer" class="group relative inline-flex items-center justify-center overflow-hidden rounded-2xl bg-indigo-600 p-0.5 font-bold text-white transition-all duration-300 hover:scale-110 hover:shadow-[0_0_40px_rgba(99,102,241,0.7)]">
+                    <span class="absolute h-full w-full bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 group-hover:from-indigo-400 group-hover:via-fuchsia-400 group-hover:to-violet-400 transition-all duration-300"></span>
+                    <span class="relative flex items-center gap-3 rounded-2xl bg-gray-900/50 px-10 py-5 transition-all duration-300 group-hover:bg-opacity-0">
+                        <i class="fa-brands fa-discord text-3xl"></i>
+                        <span class="text-2xl">Launch Discord</span>
+                    </span>
+                </a>
+                </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center relative border-t border-white/5 glass">
+        <div class="max-w-screen-xl mx-auto px-4">
+            <div class="text-2xl font-bold hero-text-gradient mb-6 inline-block">LUMINIA</div>
+            <p class="text-gray-500">© 2025 Luminia Community. Crafted with stardust.N
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray;
+
+        function setCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        setCanvasSize();
+        window.addEventListener('resize', setCanvasSize);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.directionX = (Math.random() * 0.4) - 0.2;
+                this.directionY = (Math.random() * 0.4) - 0.2;
+                this.size = Math.random() * 3 + 1;
+                const colors = ['rgba(99, 102, 241, ', 'rgba(168, 85, 247, ', 'rgba(255, 255, 255, '];
+                this.baseColor = colors[Math.floor(Math.random() * colors.length)];
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 2);
+                gradient.addColorStop(0, this.baseColor + this.opacity + ')');
+                gradient.addColorStop(1, this.baseColor + '0)');
+                ctx.fillStyle = gradient;
+                ctx.fill();
+            }
+
+            update() {
+                if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+                if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
+
+                this.x += this.directionX;
+                this.y += this.directionY;
+
+                this.opacity += (Math.random() - 0.5) * 0.01;
+                if (this.opacity < 0.1) this.opacity = 0.1;
+                if (this.opacity > 0.6) this.opacity = 0.6;
+
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 15000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+        }
+
+        init();
+        animate();
+        window.addEventListener('resize', () => {
+            setCanvasSize();
+            init();
+        })
+
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.15, 
+            rootMargin: "0px 0px -50px 0px" 
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+    </script>
+</body>
+</html>
